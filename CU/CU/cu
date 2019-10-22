@@ -1,0 +1,21 @@
+#!/bin/bash
+
+##------------ Installing dependencies  --------------
+echo ubuntu | sudo apt -y update 
+sudo apt -y upgrade
+sudo apt -y install subversion git cmake nano wget net-tools
+
+##------------ Installing kernel modules  --------------
+sudo apt -y install linux-headers-$(uname -r)
+
+##------------ Networking  --------------
+source cu_net
+
+##------------ Building OAI --------------
+source cu_build
+
+##------------ Configuring OAI --------------
+source cu_conf
+
+
+

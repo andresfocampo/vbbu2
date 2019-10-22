@@ -1,0 +1,60 @@
+#!/bin/bash
+
+usage() { echo "Usage: $0 [-lif | --local_if <string>] [-lip | --local_address <string>]" 1>&2; exit 1; }
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -lif | --local_if )    		    shift
+                                		local_if_name=$1
+		                                ;;
+        -lip | --local_address )    	shift
+                               			local_ip_address=$1
+							   			;;
+        * )                    			usage
+                               			exit 1
+    esac
+    shift
+done
+
+
+
+source cu_params
+lxc_name=CU_F1
+
+PREFIX_LOCAL='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/CU_DU_F1/CU/cu_params'
+PREFIX_REMOTE='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/CU_DU_F1/DU/du_params'
+PREFIX_FS='/var/lib/lxc/'$lxc_name'/rootfs/'
+PREFIX_HOME='/var/lib/lxc/'$lxc_name'/rootfs/home/ubuntu'
+clone_url='https://www.dropbox.com/s/7el1ytelqz0hl72/CU.tar.gz?dl=0'
+
+
+sudo ip route add $mme_ip via $local_ip_address dev $local_if_name #adding route to S1C interface
+sudo ip route add $spgw_ip via $local_ip_address dev $local_if_name #adding route to S1U interface
+
+
+sudo lxc-create -t download -n $lxc_name -- -d ubuntu -r bionic -a amd64
+sudo -s  wget -O $PREFIX_HOME/CU.tar.gz $clone_url
+sudo -s tar -xzf $PREFIX_HOME/CU.tar.gz -C $PREFIX_HOME
+
+sudo lxc-start -n $lxc_name -d
+
+lxc_ip=$(sudo -s lxc-info -n $lxc_name --ip | cut -d ":" -f2)
+i="0"
+while [ $i -lt 20 ] 
+do
+    sleep 1    
+    if [ ! -z "$lxc_ip" ]
+    then  
+        echo 'local_s_address='$lxc_ip'' | tee -a $PREFIX_LOCAL
+        echo 'remote_n_address='$lxc_ip'' | tee -a $PREFIX_REMOTE
+        break            
+    fi
+    lxc_ip=$(lxc-info -n $lxc_name --ip | cut -d ":" -f2)    
+    i=$[$i+1]
+done
+
+if [ -z "$lxc_ip" ]
+then    
+    echo 'ERROR: No assigned IP to container '$lxc_name''            
+fi
+sudo -s lxc-attach -n $lxc_name -- passwd ubuntu

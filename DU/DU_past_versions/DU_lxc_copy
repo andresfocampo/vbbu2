@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#installing lxc
+#stty -echo
+#read -p "Password: " pass
+#stty echo
+#echo $pass | sudo -S apt update
+sudo -s mkdir /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas 
+#sudo -s chmod -R 7777 /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas/
+sudo -s  wget -O /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas/DU.tar.gz https://www.dropbox.com/s/psc7dp0nw455j31/DU.tar.gz?dl=0
+sudo -s tar -xzf /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas/DU.tar.gz -C /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas/
+#sudo -s chmod -R 7777 /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas/DU/
+#sudo -s chmod 7777 /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas/DU/DU_build
+#sudo -s chmod -x /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas/DU/DU_build
+
+
+#sudo -s wget - "https://www.dropbox.com/s/wi6veko74jx59kj/DU.tar.gz?dl=0"
+#wget - "https://www.dropbox.com/s/wi6veko74jx59kj/DU.tar.gz?dl=0"  | tar xzf -
+#sudo -s cd /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas && wget - "https://www.dropbox.com/s/wi6veko74jx59kj/DU.tar.gz?dl=0" | tar xzf -
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+#!/bin/bash
+source cu_param
+
+##------------ Networking  --------------
+
+#virtual interfaces
+sudo ifconfig $enb_if_s1c $enb_ip_s1c up
+sudo ifconfig $enb_if_s1u $enb_ip_s1u up
+sudo ifconfig $enb_if_x2c $enb_ip_x2c up
+
+#ip-tables-routes
+sudo ip route add 10.0.1.0 via 10.0.3.1 dev eth0
+
+#sudo ifconfig eth0:0 $cu_ip  up
+#sudo ifconfig eth0:1 $cu_s1c up
+#sudo ifconfig eth0:2 $cu_s1u up
+#sudo ifconfig eth0:3 $cu_x2c up
+#sudo ip route add 10.0.1.0 via 10.0.3.1 dev eth0

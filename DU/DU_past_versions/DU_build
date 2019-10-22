@@ -1,0 +1,31 @@
+#!/bin/bash
+#installing OAI and dependencies
+echo ubuntu | sudo apt -y update 
+sudo apt -y upgrade
+sudo apt -y install subversion git cmake nano wget
+#installing kernel modules
+sudo apt -y install linux-headers-$(uname -r)
+#cloning OAI
+git clone https://andresocp@gitlab.eurecom.fr/oai/openairinterface5g.git
+#cloning conf files
+wget -O DU_conf.tar.gz https://www.dropbox.com/s/psc7dp0nw455j31/DU.tar.gz?dl=0 
+tar -xzf DU_conf.tar.gz -C /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/
+mkdir ~/openairinterface5g/ci-scripts/conf_files/DU
+cp ~/openairinterface5g/ci-scripts/conf_files/ue.nfapi.conf ~/openairinterface5g/ci-scripts/conf_files/DU
+wget -O ~/openairinterface5g/ci-scripts/conf_files/DU/DU_conf.tar.gz https://www.dropbox.com/s/psc7dp0nw455j31/DU.tar.gz?dl=0 
+tar -xzf ~/openairinterface5g/ci-scripts/conf_files/DU/DU_conf.tar.gz -C ~/openairinterface5g/ci-scripts/conf_files/DU/DU_conf.tar.gz
+
+git checkout -f v1.1.0
+cd ~/openairinterface5g/ci-scripts/conf_files/DU
+
+mkdir /var/lib/lxc/nFAPI_DU/rootfs/home/ubuntu/sisas 
+./cmake_targets/build_oai -I -w USRP
+./cmake_targets/build_oai --eNB -w USRP
+
+
+
+
+
+
+
+

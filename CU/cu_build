@@ -1,0 +1,33 @@
+#!/bin/bash
+##------------ Installing OAI and dependencies  --------------
+#echo ubuntu | sudo apt -y update 
+#sudo apt -y upgrade
+#sudo apt -y install subversion git cmake nano wget net-tools
+
+##------------ Installing kernel modules  --------------
+#sudo apt -y install linux-headers-$(uname -r)
+
+##------------ Building OAI   --------------
+#Getting source code
+git clone https://andresocp@gitlab.eurecom.fr/oai/openairinterface5g.git
+
+#cloning conf files
+mkdir ~/openairinterface5g/ci-scripts/conf_files/CU
+cp ~/openairinterface5g/ci-scripts/conf_files/rcc.band7.tm1.nfapi.conf ~/openairinterface5g/ci-scripts/conf_files/CU
+
+
+cd ~/openairinterface5g/
+#Checking out last version of master branch
+git checkout -f v1.1.0
+#Installing dependencies
+./cmake_targets/build_oai -I 
+#building the code
+./cmake_targets/build_oai --eNB 
+
+
+
+
+
+
+
+

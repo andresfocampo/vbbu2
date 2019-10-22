@@ -1,0 +1,22 @@
+#!/bin/bash
+source cu_params
+PREFIX='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/CU_DU_F1/CU/cu.band7.tm1.25PRB.conf'
+#PREFIX='~/openairinterface5g/ci-scripts/conf_files/cu.band7.tm1.25PRB.conf'
+
+##------------ Configuring MACRLC  --------------
+sed -i '/local_s_if_name/c\	local_s_if_name  = "'$local_s_if_name'";' $PREFIX
+sed -i '/remote_s_address/c\	remote_s_address = "'$remote_s_address'";' $PREFIX
+sed -i '/local_s_address/c\	local_s_address  = "'$local_s_address'";' $PREFIX
+
+##------------ MME parameters  --------------
+sed -i -e "s|CI_MME_IP_ADDR|$mme_ip|g" $PREFIX
+
+##------------ NETWORK_INTERFACES  --------------
+sed -i '/ENB_INTERFACE_NAME_FOR_S1_MME/c\		ENB_INTERFACE_NAME_FOR_S1_MME            = "'$enb_if_s1c'";' $PREFIX
+sed -i '/ENB_IPV4_ADDRESS_FOR_S1_MME/c\        ENB_IPV4_ADDRESS_FOR_S1_MME              = "'$enb_ip_s1c'";' $PREFIX
+sed -i '/ENB_INTERFACE_NAME_FOR_S1U/c\        ENB_INTERFACE_NAME_FOR_S1U               = "'$enb_if_s1u'";' $PREFIX
+sed -i '/ENB_IPV4_ADDRESS_FOR_S1U/c\        ENB_IPV4_ADDRESS_FOR_S1U                 = "'$enb_ip_s1u'";' $PREFIX
+sed -i '/ENB_PORT_FOR_S1U/c\        ENB_PORT_FOR_S1U                         = "'$enb_port_s1u'";' $PREFIX
+sed -i '/ENB_IPV4_ADDRESS_FOR_X2C/c\        ENB_IPV4_ADDRESS_FOR_X2C                 = "'$enb_ip_x2c'";' $PREFIX
+sed -i '/ENB_PORT_FOR_X2C/c\		ENB_PORT_FOR_X2C                         = "'$enb_port_x2c'";' $PREFIX
+
