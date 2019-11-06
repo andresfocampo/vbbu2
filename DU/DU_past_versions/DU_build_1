@@ -1,9 +1,0 @@
-#!/bin/bash
-
-#installing OAI and dependencies
-echo ubuntu | sudo -S apt update 
-echo ubuntu | sudo -S apt upgrade
-echo ubuntu | sudo -S apt-get install subversion git cmake nano
-
-
-

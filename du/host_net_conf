@@ -1,0 +1,20 @@
+#!/bin/bash
+sudo modprobe sctp #allow sctp flows
+
+du_host_if_name=eno1
+lxc_if_name=lxcbr0
+lxc_ip=10.0.3.1
+
+#=================== Routes to CU =====================
+cu_host_ip=192.168.209.3
+cu_ip=10.0.10.10
+#adding route to CU
+sudo ip route add $cu_ip via $cu_host_ip dev $du_host_if_name
+#======================================================
+
+
+#================ Routes to DU container ==============
+du_ip=10.0.10.20
+#adding route to DU container
+sudo ip route add $du_ip via $lxc_ip dev $lxc_if_name
+#======================================================

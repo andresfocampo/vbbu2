@@ -1,0 +1,29 @@
+#!/bin/bash
+
+cd ~/
+#============= Installing dependencies ================
+echo ubuntu | sudo apt -y update 
+sudo apt -y upgrade
+sudo apt -y install subversion cmake wget net-tools nano
+#======================================================
+
+#=========== Installing kernel modules ================
+sudo apt -y install linux-headers-$(uname -r)
+#======================================================
+
+#=================== Networking ======================
+cd ~/vbbu1/du
+source du_net_conf
+#======================================================
+
+#================== Building OAI ======================
+cd ~/vbbu1/du
+source du_build
+#======================================================
+
+#================= Configuring OAI ====================
+cd ~/vbbu1/du
+source du_conf
+#======================================================
+#cd ~/openairinterface5g
+#sudo ./cmake_targets/lte_build_oai/build/lte-softmodem -O ci-scripts/conf_files/du/rru.oaisim.conf'

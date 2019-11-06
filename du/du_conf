@@ -1,0 +1,12 @@
+#!/bin/bash
+source du_params
+cp ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/rru.oaisim.conf ~/openairinterface5g/ci-scripts/conf_files/du
+#PREFIX='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/vbbu1/du/rru.oaisim.conf'
+PREFIX=$HOME'/openairinterface5g/ci-scripts/conf_files/du/rru.oaisim.conf'
+
+
+#================== CU/DU networking ===================
+sed -i '/local_if_name/c\      	local_if_name                    = "'$du_if_name'";' $PREFIX
+sed -i '/remote_address/c\      	remote_address                   = "'$cu_ip'";' $PREFIX
+sed -i '/local_address/c\    	local_address                    = "'$du_ip'";' $PREFIX
+#======================================================

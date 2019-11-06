@@ -1,0 +1,12 @@
+#!/bin/bash
+source du_params
+
+#=================== Networking ======================
+#virtual interfaces
+sudo ifconfig $du_if_name $du_ip up
+#======================================================
+
+#=================== Route to CU =====================
+#adding route to DU
+sudo ip route add $cu_ip via $local_ip_net dev $local_if_name
+#======================================================

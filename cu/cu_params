@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#================= General parameters ==================
+#PLMN
+tac=600
+mcc=208
+mnc=92
+eNB_ID=0xe01
+Nid_cell=1
+Nid_cell_mbsfn=1
+
+#================= General interfaces ==================
+#Networking
+mme_ip=192.168.247.102
+spgw_ip=192.168.248.159
+local_if_name=eth0
+local_ip_net=10.0.3.1
+#=======================================================
+
+#================== CU/DU interfaces ===================
+cu_if_name=$local_if_name:1
+cu_ip=10.0.10.10
+du_ip=10.0.10.20 
+#=======================================================
+
+#==================== CU interfaces ====================
+cu_if_s1c=$local_if_name:2
+cu_ip_s1c=192.168.247.10
+cu_if_s1u=$local_if_name:3
+cu_ip_s1u=192.168.248.10
+cu_port_s1u=2152
+cu_if_x2c=$local_if_name:4
+cu_ip_x2c=192.168.249.10
+cu_port_x2c=36422
+#=======================================================

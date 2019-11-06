@@ -1,0 +1,22 @@
+#!/bin/bash
+source cu_params
+
+#==================== Interfaces ======================
+#virtual interfaces
+sudo ifconfig $cu_if_s1c $cu_ip_s1c up
+sudo ifconfig $cu_if_s1u $cu_ip_s1u up
+sudo ifconfig $cu_if_x2c $cu_ip_x2c up
+sudo ifconfig $cu_if_name $cu_ip up
+#======================================================
+
+#=================== Routes to EPC ====================
+#adding route to S1C interface
+sudo ip route add $mme_ip via $local_ip_net dev $local_if_name
+#adding route to S1U interface
+sudo ip route add $spgw_ip via $local_ip_net dev $local_if_name
+#======================================================
+
+#=================== Route to DU =====================
+#adding route to DU
+sudo ip route add $du_ip via $local_ip_net dev $local_if_name
+#======================================================

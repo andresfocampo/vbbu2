@@ -1,8 +1,0 @@
-#!/bin/bash
-source du_params
-#PREFIX='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/CU_DU_L2_nFAPI/ue.nfapi.conf'
-PREFIX='~/openairinterface5g/ci-scripts/conf_files/DU/ue.nfapi.conf'
-##------------ Configuring L1  --------------
-sed -i '/local_n_if_name/c\	local_n_if_name  = "'$local_n_if_name'";' $PREFIX
-sed -i '/remote_n_address/c\	remote_n_address = "'$remote_n_address'";' $PREFIX
-sed -i '/local_n_address/c\	local_n_address = "'$local_n_address'";' $PREFIX

@@ -1,0 +1,37 @@
+#!/bin/bash
+source cu_params
+cp ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/rcc.band7.tm1.if4p5.50PRB.conf ~/openairinterface5g/ci-scripts/conf_files/cu
+#PREFIX='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/vbbu1/cu/rcc.band7.tm1.if4p5.50PRB.conf'
+PREFIX=$HOME'/openairinterface5g/ci-scripts/conf_files/cu/rcc.band7.tm1.if4p5.50PRB.conf'
+
+#==================== CU eNB ID  ======================
+sed -i '/eNB_ID/c\    eNB_ID    =  '$eNB_ID';' $PREFIX
+sed -i '/Nid_cell					      = /c\      Nid_cell					      = '$Nid_cell';' $PREFIX
+sed -i '/_mbsfn/c\      Nid_cell_mbsfn          			      = '$Nid_cell_mbsfn';' $PREFIX
+#======================================================
+
+#====================== CU PLMN  ======================
+sed -i '/tracking_area_code = 1/c\    tracking_area_code = '$tac';' $PREFIX
+sed -i '/plmn_list/c\    plmn_list = ( { mcc = '$mcc'; mnc = '$mnc'; mnc_length = 2; } )' $PREFIX
+#======================================================
+
+
+#================== CU/DU parameters ==================
+sed -i '/local_if_name/c\      	local_if_name  = "'$cu_if_name'";' $PREFIX
+sed -i '/remote_address/c\      	remote_address = "'$du_ip'";' $PREFIX
+sed -i '/local_address/c\    	local_address  = "'$cu_ip'";' $PREFIX
+#======================================================
+
+#================== MME parameters ====================
+sed -i '/mme_ip_address/c\    mme_ip_address      = ( { ipv4       =  "'$mme_ip'";' $PREFIX
+#======================================================
+
+#================ NETWORK_INTERFACES ==================
+sed -i '/ENB_INTERFACE_NAME_FOR_S1_MME/c\        ENB_INTERFACE_NAME_FOR_S1_MME            = "'$cu_if_s1c'";' $PREFIX
+sed -i '/ENB_IPV4_ADDRESS_FOR_S1_MME/c\        ENB_IPV4_ADDRESS_FOR_S1_MME              = "'$cu_ip_s1c'";' $PREFIX
+sed -i '/ENB_INTERFACE_NAME_FOR_S1U/c\        ENB_INTERFACE_NAME_FOR_S1U               = "'$cu_if_s1u'";' $PREFIX
+sed -i '/ENB_IPV4_ADDRESS_FOR_S1U/c\        ENB_IPV4_ADDRESS_FOR_S1U                 = "'$cu_ip_s1u'";' $PREFIX
+sed -i '/ENB_PORT_FOR_S1U/c\        ENB_PORT_FOR_S1U                         = "'$cu_port_s1u'";' $PREFIX
+sed -i '/ENB_IPV4_ADDRESS_FOR_X2C/c\        ENB_IPV4_ADDRESS_FOR_X2C                 = "'$cu_ip_x2c'";' $PREFIX
+sed -i '/ENB_PORT_FOR_X2C/c\      ENB_PORT_FOR_X2C              = "'$cu_port_x2c'";' $PREFIX
+#======================================================
