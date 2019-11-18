@@ -1,6 +1,6 @@
 #!/bin/bash
 
-lxc_name=vbbu1
+lxc_name=vbbu2
 PREFIX='/var/lib/lxc/'$lxc_name'/config'
 sudo lxc-create -t download -n $lxc_name -- -d ubuntu -r bionic -a amd64
 echo -e  'lxc.cgroup.devices.allow = c 189:* rwm' | sudo -s tee -a $PREFIX

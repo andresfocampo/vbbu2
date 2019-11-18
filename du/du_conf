@@ -1,12 +1,34 @@
 #!/bin/bash
 source du_params
-cp ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/rru.oaisim.conf ~/openairinterface5g/ci-scripts/conf_files/du
-#PREFIX='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/vbbu1/du/rru.oaisim.conf'
-PREFIX=$HOME'/openairinterface5g/ci-scripts/conf_files/du/rru.oaisim.conf'
+cp ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/oaiL1.nfapi.usrpb210.conf ~/openairinterface5g/ci-scripts/conf_files/du
+PREFIX=$HOME'/openairinterface5g/ci-scripts/conf_files/du/oaiL1.nfapi.usrpb210.conf'
+#cp ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/oaiL1.nfapi.usrpb210.conf /home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/vbbu2/du
+#PREFIX='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/vbbu2/du/oaiL1.nfapi.usrpb210.conf'
 
+#======================= Parsing ======================
+#The original file from OAI comes with commented lines
+#The parsing consists on eliminating such commented 
+#lines
+sed -i '/#/c\' $PREFIX
+#======================================================
 
 #================== CU/DU networking ===================
-sed -i '/local_if_name/c\      	local_if_name                    = "'$du_if_name'";' $PREFIX
-sed -i '/remote_address/c\      	remote_address                   = "'$cu_ip'";' $PREFIX
-sed -i '/local_address/c\    	local_address                    = "'$du_ip'";' $PREFIX
+sed -i '/local_n_if_name/c\	local_n_if_name  = "'$du_if_name'";' $PREFIX
+sed -i '/remote_n_address/c\	remote_n_address = "'$cu_ip'";' $PREFIX
+sed -i '/local_n_address/c\	local_n_address = "'$du_ip'";' $PREFIX
+sed -i '/local_n_portc/c\	local_n_portc    = "'$local_n_portc'";' $PREFIX
+sed -i '/remote_n_portc/c\	remote_n_portc    = "'$remote_n_portc'";' $PREFIX
+sed -i '/local_n_portd/c\	local_n_portd    = "'$local_n_portd'";' $PREFIX
+sed -i '/remote_n_portd/c\	remote_n_portd    = "'$remote_n_portd'";' $PREFIX
 #======================================================
+
+#======================== RUs =========================
+sed -i '/bands/c\       bands          = '$bands';'   $PREFIX
+sed -i '/max_rxgain/c\       max_rxgain                    = '$max_rxgain';'   $PREFIX
+#======================================================
+
+#======================= Parsing ======================
+#After parsing the file, deleting empty lines is performed
+sed -i '/^$/d' $PREFIX
+#======================================================
+

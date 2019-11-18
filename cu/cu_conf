@@ -1,8 +1,10 @@
 #!/bin/bash
 source cu_params
-cp ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/rcc.band7.tm1.if4p5.50PRB.conf ~/openairinterface5g/ci-scripts/conf_files/cu
-#PREFIX='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/vbbu1/cu/rcc.band7.tm1.if4p5.50PRB.conf'
-PREFIX=$HOME'/openairinterface5g/ci-scripts/conf_files/cu/rcc.band7.tm1.if4p5.50PRB.conf'
+cp ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/rcc.band7.tm1.50PRB.nfapi.conf ~/openairinterface5g/ci-scripts/conf_files/cu
+PREFIX=$HOME'/openairinterface5g/ci-scripts/conf_files/cu/rcc.band7.tm1.50PRB.nfapi.conf'
+#cp ~/openairinterface5g/targets/PROJECTS/GENERIC-LTE-EPC/CONF/rcc.band7.tm1.50PRB.nfapi.conf /home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/vbbu2/cu
+#PREFIX='/home/lyapunov_crna/Documents/PhD_5G/Experiments/OAI/vbbu2/cu/rcc.band7.tm1.50PRB.nfapi.conf'
+
 
 #==================== CU eNB ID  ======================
 sed -i '/eNB_ID/c\    eNB_ID    =  '$eNB_ID';' $PREFIX
@@ -15,11 +17,22 @@ sed -i '/tracking_area_code = 1/c\    tracking_area_code = '$tac';' $PREFIX
 sed -i '/plmn_list/c\    plmn_list = ( { mcc = '$mcc'; mnc = '$mnc'; mnc_length = 2; } )' $PREFIX
 #======================================================
 
+#====================== TX/RX CU ======================
+sed -i '/downlink_frequency/c\      downlink_frequency      			      = '$downlink_frequency';'   $PREFIX
+sed -i '/eutra_band/c\      eutra_band              			      = '$eutra_band';'   $PREFIX
+sed -i '/N_RB_DL/c\      N_RB_DL                 			      = '$N_RB_DL';'   $PREFIX
+#======================================================
 
-#================== CU/DU parameters ==================
-sed -i '/local_if_name/c\      	local_if_name  = "'$cu_if_name'";' $PREFIX
-sed -i '/remote_address/c\      	remote_address = "'$du_ip'";' $PREFIX
-sed -i '/local_address/c\    	local_address  = "'$cu_ip'";' $PREFIX
+
+#================== CU/DU interfaces ==================
+sed -i '/local_s_if_name/c\	local_s_if_name  = "'$cu_if_name'";' $PREFIX
+sed -i '/remote_s_address/c\	remote_s_address = "'$du_ip'";' $PREFIX
+sed -i '/local_s_address/c\	local_s_address  = "'$cu_ip'";' $PREFIX
+sed -i '/local_s_portc/c\	local_n_portc    = "'$local_s_portc'";' $PREFIX
+sed -i '/remote_s_portc/c\	remote_n_portc    = "'$remote_s_portc'";' $PREFIX
+sed -i '/local_s_portd/c\	local_n_portd    = "'$local_s_portd'";' $PREFIX
+sed -i '/remote_s_portd/c\	remote_n_portd    = "'$remote_s_portd'";' $PREFIX
+
 #======================================================
 
 #================== MME parameters ====================

@@ -17,18 +17,18 @@ sudo ip route add $spgw_ip via $epc_host_ip dev $cu_host_if_name
 #======================================================
 
 #=================== Routes to DU =====================
-du_host_ip=192.168.209.10
-du_ip=10.0.10.20
+du_host_ip=192.168.209.20
+du_ip=10.0.20.20
 #adding route to DU 
 sudo ip route add $du_ip via $du_host_ip dev $cu_host_if_name
 #======================================================
 
 
 #============== Routes to CU container ================
-cu_s1c=192.168.247.10
-cu_s1u=192.168.248.10
-cu_x2c=192.168.249.10
-cu_ip=10.0.10.10
+cu_ip_s1c=192.168.247.20
+cu_ip_s1u=192.168.248.20
+cu_ip_x2c=192.168.249.20
+cu_ip=10.0.20.10
 #adding route to CU S1C interface
 sudo ip route add $cu_ip_s1c via $lxc_ip dev $lxc_if_name
 #adding route to CU S1U interface

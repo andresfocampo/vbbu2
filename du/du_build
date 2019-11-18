@@ -9,18 +9,12 @@ git clone https://andresocp@gitlab.eurecom.fr/oai/openairinterface5g.git
 mkdir openairinterface5g/ci-scripts/conf_files/du
 
 cd ~/openairinterface5g/
-git checkout -f 2019.w41
+git checkout -f v1.1.1
 source oaienv  
 
 #Installing dependencies
 ./cmake_targets/build_oai -I -w USRP
 #building the code
 ./cmake_targets/build_oai --eNB -w USRP -c
-
-
-
-
-
-
 
 

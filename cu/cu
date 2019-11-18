@@ -12,18 +12,18 @@ sudo apt -y install linux-headers-$(uname -r)
 #======================================================
 
 #=================== Networking ======================
-cd ~/vbbu1/cu
+cd ~/vbbu2/cu
 source cu_net_conf
 #======================================================
 
 #================== Building OAI ======================
-cd ~/vbbu1/cu
+cd ~/vbbu2/cu
 source cu_build
 #======================================================
 
 #================= Configuring OAI ====================
-cd ~/vbbu1/cu
+cd ~/vbbu2/cu
 source cu_conf
 #======================================================
 
-#sudo ./cmake_targets/lte_build_oai/build/lte-softmodem -O ci-scripts/conf_files/cu/rcc.band7.tm1.if4p5.50PRB.conf
+#sudo ./cmake_targets/lte_build_oai/build/lte-softmodem -O ci-scripts/conf_files/cu/rcc.band7.tm1.50PRB.nfapi.conf'

@@ -3,10 +3,10 @@ source cu_params
 
 #==================== Interfaces ======================
 #virtual interfaces
+sudo ifconfig $cu_if_name $cu_ip up
 sudo ifconfig $cu_if_s1c $cu_ip_s1c up
 sudo ifconfig $cu_if_s1u $cu_ip_s1u up
 sudo ifconfig $cu_if_x2c $cu_ip_x2c up
-sudo ifconfig $cu_if_name $cu_ip up
 #======================================================
 
 #=================== Routes to EPC ====================
